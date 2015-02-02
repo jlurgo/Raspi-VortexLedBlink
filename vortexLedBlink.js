@@ -1,6 +1,6 @@
 var Vortex = require('vortexjs');
-//var Gpio = require('onoff').Gpio;
-//var led = new Gpio(17, 'out');
+var Gpio = require('onoff').Gpio;
+var led = new Gpio(17, 'out');
 var sck = require('socket.io-client')('https://router-vortex.herokuapp.com');
 
 var NodoRouter = Vortex.NodoRouter;
