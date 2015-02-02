@@ -1,0 +1,50 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<input id="btn_on" type="button" value="on"/>
+		<input id="btn_off" type="button" value="off"/>
+	</body>
+	
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script> 
+	
+	<script type="text/javascript" src="node_modules/vortexjs/FiltrosYTransformaciones.js"></script>
+    <script type="text/javascript" src="node_modules/vortexjs/ClonadorDeObjetos.js"></script> 
+    <script type="text/javascript" src="node_modules/vortexjs/GeneradorDeIdMensaje.js"></script> 
+    <script type="text/javascript" src="node_modules/vortexjs/NodoPortalBidi.js"></script> 
+    <script type="text/javascript" src="node_modules/vortexjs/NodoRouter.js"></script> 
+    <script type="text/javascript" src="node_modules/vortexjs/PataConectora.js"></script> 
+    <script type="text/javascript" src="node_modules/vortexjs/NodoConectorSocket.js"></script>
+    <script type="text/javascript" src="node_modules/vortexjs/socket.io.js"></script>
+    <script type="text/javascript" src="node_modules/vortexjs/UtilesVortex.js"></script>     
+	
+	<script type="application/javascript">
+		$(function(){
+			var portal = new NodoPortalBidi();
+
+			var connSocket = new NodoConectorSocket({
+				id: "1",
+				socket: io.connect("https://router-vortex.herokuapp.com"), 
+				verbose: true, 
+				alDesconectar:function(){
+					console.log("Socket desconectado");
+				}
+			});    
+
+			portal.conectarCon(connSocket);
+			connSocket.conectarCon(portal);
+
+
+			$("#btn_on").click(function(){
+				portal.enviarMensaje({
+					tipoDeMensaje:"raspi_vortex_led_blink.led_on"					
+				});
+			});
+			$("#btn_off").click(function(){
+				portal.enviarMensaje({
+					tipoDeMensaje:"raspi_vortex_led_blink.led_on"					
+				});
+			});
+		});
+	</script>
+</html>
