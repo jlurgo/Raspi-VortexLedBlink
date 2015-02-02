@@ -1,0 +1,14 @@
+{
+  "name" : "vortexledblink",
+  "version" : "1.0.0",
+  "private" : false,
+  "engines" : {
+    "node": "*",
+    "npm": "1.3.2"
+  },
+  "dependencies" : {
+      "vortexjs": "*",
+      "socket.io-client": "*"      
+  },
+  "devDependencies": {}
+}
